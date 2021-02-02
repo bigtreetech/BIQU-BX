@@ -174,15 +174,14 @@
 
 #define FAN_PIN                             PA5  // "FAN0"
 #define FAN1_PIN                            PA6  // "FAN1"
-#define CONTROLLER_FAN_PIN                  PA7
+//#define CONTROLLER_FAN_PIN                  PA7
 // #define FAN2_PIN                            PA7  // "FAN2"
 
 #define NEOPIXEL_PIN                        PH3
 #define NEOPIXEL2_PIN                       PB1
 
-#ifndef E0_AUTO_FAN_PIN
-  //#define E0_AUTO_FAN_PIN                   PA7
-#endif
+//#define E0_AUTO_FAN_PIN                     PA7
+
 
 #if HAS_LTDC_TFT
 
