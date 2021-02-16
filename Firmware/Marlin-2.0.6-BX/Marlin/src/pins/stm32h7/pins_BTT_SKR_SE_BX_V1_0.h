@@ -175,7 +175,7 @@
 #define FAN_PIN                             PA5  // "FAN0"
 #define FAN1_PIN                            PA6  // "FAN1"
 //#define CONTROLLER_FAN_PIN                  PA7
-// #define FAN2_PIN                            PA7  // "FAN2"
+//#define FAN2_PIN                            PA7  // "FAN2"
 
 #define NEOPIXEL_PIN                        PH3
 #define NEOPIXEL2_PIN                       PB1
@@ -211,8 +211,8 @@
 #define BSDSS                               PA15
 
 #define SOFTWARE_SPI
-#define SDSS                            PC1
-#define SS_PIN                          SDSS
+#define SDSS                                PC1
+#define SS_PIN                              SDSS
 #define SCK_PIN                             PC10
 #define MISO_PIN                            PC11
 #define MOSI_PIN                            PC12

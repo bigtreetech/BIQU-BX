@@ -39,6 +39,14 @@ struct HOST_ACTION
 
 // notify or ignore messages starting with following text
 const ECHO knownEcho[] = {
+  {ECHO_NOTIFY_NONE, "echo:start"},
+  {ECHO_NOTIFY_NONE, "echo: Last Updated:"},
+  {ECHO_NOTIFY_NONE, "echo:Compiled:"},
+  {ECHO_NOTIFY_NONE, "echo: Free Memory:"},
+  {ECHO_NOTIFY_NONE, "echo:safe power"},
+  {ECHO_NOTIFY_NONE, "echo:Power detect"},
+  {ECHO_NOTIFY_NONE, "stored settings retrieved"},
+  {ECHO_NOTIFY_NONE, "SD card ok"},
   {ECHO_NOTIFY_NONE, "busy: paused for user"},
   {ECHO_NOTIFY_NONE, "busy: processing"},
   {ECHO_NOTIFY_NONE, "Now fresh file:"},
@@ -212,7 +220,7 @@ void syncL2CacheFromL1(uint8_t port)
 
 void hostActionCommands(void)
 {
-  char *find = strchr(dmaL2Cache + ack_index, '\n'); 
+  char *find = strchr(dmaL2Cache + ack_index, '\n');
   *find = '\0';
   if(ack_seen("prompt_begin "))
   {
@@ -641,7 +649,7 @@ void parseACK(void)
   //       if(ack_seen("Y")) setParameter(P_BUMPSENSITIVITY, Y_STEPPER, ack_value());
   //       if(ack_seen("Z")) setParameter(P_BUMPSENSITIVITY, Z_STEPPER, ack_value());
   //     }
-  //   // parse and store TMC Hybrid Threshold Speed  
+  //   // parse and store TMC Hybrid Threshold Speed
   //     else if(ack_seen("M913 X")){
   //                         setParameter(P_HYBRID_THRESHOLD, X_STEPPER, ack_value());
   //       if(ack_seen("Y")) setParameter(P_HYBRID_THRESHOLD, Y_STEPPER, ack_value());
@@ -654,7 +662,7 @@ void parseACK(void)
   //     else if(ack_seen("M913 T1 E")){
   //                         setParameter(P_HYBRID_THRESHOLD, E2_STEPPER, ack_value());
   //                         setDualStepperStatus(E_STEPPER, true);
-  //     }  
+  //     }
   //   // Parse and store ABL type
   //     else if(ack_seen("echo:; Unified Bed Leveling")){
   //       if(ENABLE_UBL_VALUE==2) infoMachineSettings.enableubl = ENABLED;
@@ -787,12 +795,12 @@ void parseACK(void)
   //     {
   //       uint8_t i = 0;
   //       if (ack_seen("S")) {
-  //         i = fanGetTypID(0,FAN_TYPE_CTRL_S); 
+  //         i = fanGetTypID(0,FAN_TYPE_CTRL_S);
   //         fanSetSpeed(i, ack_value());
   //         fanSpeedQuerySetWait(false);
   //       }
   //       if (ack_seen("I")) {
-  //         i = fanGetTypID(0,FAN_TYPE_CTRL_I); 
+  //         i = fanGetTypID(0,FAN_TYPE_CTRL_I);
   //         fanSetSpeed(i, ack_value());
   //         fanSpeedQuerySetWait(false);
   //       }
