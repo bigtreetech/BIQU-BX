@@ -106,6 +106,8 @@ DRESULT disk_read (
   if (!count) return RES_PARERR;
   if (diskStatus[pdrv] & STA_NOINIT) return RES_NOTRDY;
 
+  wtd_update();
+
 	switch (pdrv) {
     case VOLUMES_TFT_SD:
       SD_Set_Slot(SD_SLOT_TFT);
@@ -117,7 +119,7 @@ DRESULT disk_read (
       }
 
       while (SD_ReadDisk((uint8_t *)tmp_buff, sector, count) != 0 && --retry) { // read error
-        // wtd_update();
+        wtd_update();
         SD_Init();	//init again
       }
       if (memcmp(tmp_buff, buff, count * 512) != 0)
@@ -138,7 +140,7 @@ DRESULT disk_read (
       SD_Set_Slot(SD_SLOT_BOARD);
 
       while (SD_ReadDisk((uint8_t *)buff, sector, count) != 0 && --retry) { // read error
-        // wtd_update();
+        wtd_update();
         SD_Init();	//init again
       }
 
@@ -169,12 +171,14 @@ DRESULT disk_write (
   if (diskStatus[pdrv] & STA_NOINIT) return RES_NOTRDY;
   if (diskStatus[pdrv] & STA_PROTECT) return RES_WRPRT;
 
+  wtd_update();
+
 	switch (pdrv) {
     case VOLUMES_TFT_SD:
       SD_Set_Slot(SD_SLOT_TFT);
 
       while (SD_WriteDisk((uint8_t *)buff, sector, count) != 0 && --retry) { // read error
-        // wtd_update();
+        wtd_update();
         SD_Init();	//init again
       }
 
@@ -194,7 +198,7 @@ DRESULT disk_write (
       SD_Set_Slot(SD_SLOT_BOARD);
 
       while (SD_WriteDisk((uint8_t *)buff, sector, count) != 0 && --retry) { // read error
-        // wtd_update();
+        wtd_update();
         SD_Init();	//init again
       }
 
