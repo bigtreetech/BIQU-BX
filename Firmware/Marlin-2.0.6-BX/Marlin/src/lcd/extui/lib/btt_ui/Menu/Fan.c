@@ -8,7 +8,7 @@ MENUITEMS fanItems = {
 // title
 LABEL_FAN,
 // icon                       label
-  {{ICON_DEC,                  LABEL_DEC},
+  {{ICON_DEC,                 LABEL_DEC},
   {ICON_BACKGROUND,           LABEL_BACKGROUND},
   {ICON_BACKGROUND,           LABEL_BACKGROUND},
   {ICON_INC,                  LABEL_INC},
@@ -111,17 +111,25 @@ void menuFanCallBack(void)
       }
       else
       {
-        actFan = 50;
+        actFan = 100;
         fanSetSpeedPercent(curIndex, actFan);
       }
       break;
 
     case KEY_ICON_5:
-      if(Fan_Half_or_Full) fanSetSpeedPercent(curIndex, 100);   //switch half or full speed
-      else fanSetSpeedPercent(curIndex, 50);
-      Fan_Half_or_Full = (Fan_Half_or_Full + 1) % 2;
-      fanItems.items[key_num] = itemFan[Fan_Half_or_Full+1];
-      menuDrawItem(&fanItems.items[key_num], key_num);
+      if ((infoSettings.fan_count + infoSettings.fan_ctrl_count) > 1)
+      {
+        if(Fan_Half_or_Full) fanSetSpeedPercent(curIndex, 100);   //switch half or full speed
+        else fanSetSpeedPercent(curIndex, 50);
+        Fan_Half_or_Full = (Fan_Half_or_Full + 1) % 2;
+        fanItems.items[key_num] = itemFan[Fan_Half_or_Full+1];
+        menuDrawItem(&fanItems.items[key_num], key_num);
+      }
+      else
+      {
+        actFan = 50;
+        fanSetSpeedPercent(curIndex, actFan);
+      }
       break;
 
     case KEY_ICON_6:
@@ -177,7 +185,10 @@ void menuFan(void)
   if ((infoSettings.fan_count + infoSettings.fan_ctrl_count) > 1)
     fanItems.items[KEY_ICON_4] = itemFan[0];
   else
-    fanItems.items[KEY_ICON_4] = itemFan[1];
+  {
+    fanItems.items[KEY_ICON_4] = itemFan[2];
+    fanItems.items[KEY_ICON_5] = itemFan[1];
+  }
   menuDrawPage(&fanItems);
   fanSpeedReDraw(false);
 

@@ -84,20 +84,21 @@
 #define Y_ENABLE_PIN                        PB4
 #define Y_CS_PIN                            PD4
 
-#define Z_STEP_PIN                          PD7
-#define Z_DIR_PIN                           PD6
-#define Z_ENABLE_PIN                        PG9
-#define Z_CS_PIN                            PD5
+
+#define Z_STEP_PIN                          PA8
+#define Z_DIR_PIN                           PC9
+#define Z_ENABLE_PIN                        PD2
+#define Z_CS_PIN                            PC8
+
+#define Z2_STEP_PIN                         PD7
+#define Z2_DIR_PIN                          PD6
+#define Z2_ENABLE_PIN                       PG9
+#define Z2_CS_PIN                           PD5
 
 #define E0_STEP_PIN                         PC14
 #define E0_DIR_PIN                          PC13
 #define E0_ENABLE_PIN                       PC15
 #define E0_CS_PIN                           PI8
-
-#define E1_STEP_PIN                         PA8
-#define E1_DIR_PIN                          PC9
-#define E1_ENABLE_PIN                       PD2
-#define E1_CS_PIN                           PC8
 
 //
 // Software SPI pins for TMC2130 stepper drivers
@@ -145,14 +146,14 @@
   #define Y_SERIAL_TX_PIN                   PD4
   #define Y_SERIAL_RX_PIN                   PD4
 
-  #define Z_SERIAL_TX_PIN                   PD5
-  #define Z_SERIAL_RX_PIN                   PD5
+  #define Z_SERIAL_TX_PIN                   PC8
+  #define Z_SERIAL_RX_PIN                   PC8
+
+  #define Z2_SERIAL_TX_PIN                  PD5
+  #define Z2_SERIAL_RX_PIN                  PD5
 
   #define E0_SERIAL_TX_PIN                  PI8
   #define E0_SERIAL_RX_PIN                  PI8
-
-  #define E1_SERIAL_TX_PIN                  PC8
-  #define E1_SERIAL_RX_PIN                  PC8
 
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                     19200
@@ -173,8 +174,8 @@
 #define HEATER_BED_PIN                      PA4
 
 #define FAN_PIN                             PA5  // "FAN0"
-#define FAN1_PIN                            PA6  // "FAN1"
-//#define CONTROLLER_FAN_PIN                  PA7
+//#define FAN1_PIN                            PA6  // "FAN1"
+#define CONTROLLER_FAN_PIN                  PA6
 //#define FAN2_PIN                            PA7  // "FAN2"
 
 #define NEOPIXEL_PIN                        PH3

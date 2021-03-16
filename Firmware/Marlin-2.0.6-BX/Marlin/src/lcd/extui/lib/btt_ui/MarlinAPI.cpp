@@ -347,11 +347,11 @@ float MarlinApi_GetParameter(PARAMETER_NAME name, uint8_t index)
     // #endif
 
   case P_LIN_ADV:
-    // #if ENABLED(LIN_ADVANCE)
-    //   #error "not code here" // MSQTODO
-    // #else
+    #if ENABLED(LIN_ADVANCE)
+      return ExtUI::getLinearAdvance_mm_mm_s((ExtUI::extruder_t)index);
+    #else
       return 0;
-    // #endif
+    #endif
 
   case P_ABL_STATE:
     switch (index)

@@ -66,7 +66,7 @@ void loopDimTimer(void)
   if (infoSettings.lcd_idle_timer == LCD_DIM_OFF)
     return;
 
-  if (
+  if (//((infoSettings.mode != LCD_MODE_RPI) && isPress()) ||
     #if LCD_ENCODER_SUPPORT
       encoder_CheckState() || encoder_ReadBtn(LCD_BUTTON_INTERVALS)
     #endif
