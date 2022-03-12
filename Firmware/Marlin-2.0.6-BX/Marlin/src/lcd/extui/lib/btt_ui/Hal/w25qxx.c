@@ -430,7 +430,7 @@ void W25Qxx_Init(void)
 	QSPI_Init(2, 4, 25);  // 1/2AHB Clock, Fifo Threshold 4(1~32), Flash Size 2^25=32M
   QSPI_Enable();
 	W25QXX_TYPE=W25Qxx_ReadID();
-	if(W25QXX_TYPE == 0xEF18)
+	// if(W25QXX_TYPE == 0xEF18)
   {
     temp=W25Qxx_ReadSR(W25Q_ReadStatusReg3);
     if((temp&0X01)==0)
