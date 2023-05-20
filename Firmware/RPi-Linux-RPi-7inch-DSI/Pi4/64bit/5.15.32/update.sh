@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\nInfo: RaspBerryPi-4, kernel 5.15.32, 32-bit OS."
+echo -e "\nInfo: RaspBerryPi-4, kernel 5.15.32, 64-bit OS."
 
 path_dts=/boot/overlays
 path_touch=/lib/modules/$(uname -r)/kernel/drivers/input/touchscreen
