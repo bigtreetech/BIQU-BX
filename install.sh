@@ -83,11 +83,13 @@ function cfg_insert()
     sync
 }
 
+
 function modify_config()
 {
     cd /boot
-    sudo sed -i '/dtoverlay=vc4-fkms-v3d/d' config.txt
-    cfg_insert config.txt  "ignore_lcd=1"
+    sudo sed -i '/^dtoverlay=vc4-fkms-v3d/s/^/#/' config.txt
+    sudo sed -i '/^display_auto_detect=1/s/^/#/' config.txt
+    # cfg_insert config.txt  "ignore_lcd=1"
     cfg_insert config.txt  "dtoverlay=vc4-kms-v3d"
     cfg_insert config.txt  "dtparam=i2c_vc=on"
     cfg_insert config.txt  "dtparam=i2c_arm=on"
