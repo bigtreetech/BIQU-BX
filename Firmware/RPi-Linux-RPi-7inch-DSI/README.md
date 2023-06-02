@@ -4,18 +4,18 @@
 
 |   Hardware   |    32-bit     |   64-bit     |
 |  :---: | :-----------: | :----------: |
-|  RPi-3 |    5.15.32    |  5.15.32   |
-|  RPi-4 |    5.15.32    |   5.15.32    |
+|  RPi-3 |    6.1.21    |  6.1.21   |
+|  RPi-4 |    6.1.21    |   6.1.21    |
 
 ## Start installation
 1. Download driver from Git
     ``` bash
-    git clone --depth=1 -b RPi-7inch-DSI https://github.com/EchoHeim/RPi-Linux.git
+    git clone --depth=1 -b RPI-DSI-BXV3 https://github.com/bigtreetech/BIQU-BX.git RPI-DSI-BXV3
     ```
     
 2. Install the driver
     ``` bash
-    cd RPi-Linux
+    cd RPI-DSI-BXV3
     sudo ./install.sh
     ```
 

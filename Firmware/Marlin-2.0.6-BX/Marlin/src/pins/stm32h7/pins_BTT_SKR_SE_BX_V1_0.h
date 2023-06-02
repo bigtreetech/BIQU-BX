@@ -85,15 +85,27 @@
 #define Y_CS_PIN                            PD4
 
 
-#define Z_STEP_PIN                          PA8
-#define Z_DIR_PIN                           PC9
-#define Z_ENABLE_PIN                        PD2
-#define Z_CS_PIN                            PC8
+// #define Z_STEP_PIN                          PA8
+// #define Z_DIR_PIN                           PC9
+// #define Z_ENABLE_PIN                        PD2
+// #define Z_CS_PIN                            PC8
 
-#define Z2_STEP_PIN                         PD7
-#define Z2_DIR_PIN                          PD6
-#define Z2_ENABLE_PIN                       PG9
-#define Z2_CS_PIN                           PD5
+// #define TEMP_0_MISO_PIN         PG3   //SDO
+// #define TEMP_0_SCK_PIN          PC7  //CLK
+// #define TEMP_0_MOSI_PIN         PC6  //SDI
+// #define TEMP_0_CS_PIN           PC8
+#define MAX31865_CS_PIN          PC8
+#define MAX31865_MOSI_PIN        PC6
+#define MAX31865_MISO_PIN        PG3
+#define MAX31865_SCK_PIN         PC7
+#define MAX6675_SS_PIN           PA8
+
+
+
+#define Z_STEP_PIN                         PD7
+#define Z_DIR_PIN                          PD6
+#define Z_ENABLE_PIN                       PG9
+#define Z_CS_PIN                           PD5
 
 #define E0_STEP_PIN                         PC14
 #define E0_DIR_PIN                          PC13
@@ -146,11 +158,11 @@
   #define Y_SERIAL_TX_PIN                   PD4
   #define Y_SERIAL_RX_PIN                   PD4
 
-  #define Z_SERIAL_TX_PIN                   PC8
-  #define Z_SERIAL_RX_PIN                   PC8
+  // #define Z_SERIAL_TX_PIN                   PC8
+  // #define Z_SERIAL_RX_PIN                   PC8
 
-  #define Z2_SERIAL_TX_PIN                  PD5
-  #define Z2_SERIAL_RX_PIN                  PD5
+  #define Z_SERIAL_TX_PIN                  PD5
+  #define Z_SERIAL_RX_PIN                  PD5
 
   #define E0_SERIAL_TX_PIN                  PI8
   #define E0_SERIAL_RX_PIN                  PI8

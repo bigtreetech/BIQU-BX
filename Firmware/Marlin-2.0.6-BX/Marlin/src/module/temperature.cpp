@@ -25,7 +25,7 @@
  */
 
 // Useful when debugging thermocouples
-//#define IGNORE_THERMOCOUPLE_ERRORS
+#define IGNORE_THERMOCOUPLE_ERRORS
 
 #include "temperature.h"
 #include "endstops.h"
@@ -57,14 +57,8 @@
   #endif
   #ifndef MAX31865_SCK_PIN
     #define MAX31865_SCK_PIN    MAX6675_SCK_PIN //            40
-  #endif
-  Adafruit_MAX31865 max31865 = Adafruit_MAX31865(MAX31865_CS_PIN
-    #if MAX31865_CS_PIN != MAX6675_SS_PIN
-      , MAX31865_MOSI_PIN           // For software SPI also set MOSI/MISO/SCK
-      , MAX31865_MISO_PIN
-      , MAX31865_SCK_PIN
-    #endif
-  );
+  #endif  
+  Adafruit_MAX31865 thermo = Adafruit_MAX31865(PC8, PC6, PG3, PC7);
 #endif
 
 #define MAX6675_SEPARATE_SPI (EITHER(HEATER_0_USES_MAX6675, HEATER_1_USES_MAX6675) && PINS_EXIST(MAX6675_SCK, MAX6675_DO))
@@ -1377,7 +1371,7 @@ void Temperature::manage_heater() {
         #elif ENABLED(HEATER_0_USES_MAX6675)
           return (
             #if ENABLED(MAX6675_IS_MAX31865)
-              max31865.temperature(100, 400)  // 100 ohms = PT100 resistance. 400 ohms = calibration resistor
+              thermo.temperature(100, 430)  // 100 ohms = PT100 resistance. 400 ohms = calibration resistor
             #else
               raw * 0.25
             #endif
@@ -1599,7 +1593,7 @@ void Temperature::updateTemperaturesFromRawValues() {
  */
 void Temperature::init() {
 
-  TERN_(MAX6675_IS_MAX31865, max31865.begin(MAX31865_2WIRE)); // MAX31865_2WIRE, MAX31865_3WIRE, MAX31865_4WIRE
+  thermo.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
 
   #if EARLY_WATCHDOG
     // Flag that the thermalManager should be running
@@ -2146,7 +2140,11 @@ void Temperature::disable_all_heaters() {
     next_max6675_ms[hindex] = ms + MAX6675_HEAT_INTERVAL;
 
     #if ENABLED(MAX6675_IS_MAX31865)
-      max6675_temp = int(max31865.temperature(100, 400)); // 100 ohms = PT100 resistance. 400 ohms = calibration resistor
+    
+      uint16_t rtd = thermo.readRTD();
+      float ratio = rtd;
+      ratio /= 32768;
+      max6675_temp = thermo.temperature(100, 430); // 100 ohms = PT100 resistance. 400 ohms = calibration resistor
     #endif
 
     //

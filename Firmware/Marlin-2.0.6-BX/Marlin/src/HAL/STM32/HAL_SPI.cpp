@@ -64,7 +64,7 @@ static SPISettings spiConfig;
       case SPI_SPEED_6:      delay_STM32_soft_spi = 2000; break;  // desired:   250,000  actual: ~210K
       default:               delay_STM32_soft_spi = 4000; break;  // desired:   125,000  actual: ~123K
     }
-    SPI.begin();
+    // SPI.begin();
   }
 
   // Begin SPI transaction, set clock, bit order, data mode
